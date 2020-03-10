@@ -6,7 +6,7 @@
 #    By: tbruinem <tbruinem@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/03/09 13:01:31 by tbruinem       #+#    #+#                 #
-#    Updated: 2020/03/09 20:12:35 by tbruinem      ########   odam.nl          #
+#    Updated: 2020/03/10 18:41:49 by tbruinem      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRC =	ft_write.s \
 		ft_list_push_front_bonus.s \
 		ft_list_size_bonus.s \
 		ft_strchr_bonus.s \
+		ft_atoi_base_bonus.s \
 		ft_strlen.s
 FLAGS = -Wall -Wextra -Werror
 ifdef DEBUG
@@ -29,7 +30,7 @@ OBJ = $(SRC:%.s=%.o)
 all: $(NAME)
 
 %.o: %.s
-	nasm -fmacho64 $< -o $@
+	nasm -fmacho64 -g -Wall -O3 $< -o $@
 
 $(NAME): $(OBJ)
 	$(CC) $(FLAGS) main.c $^ -o $(NAME)

@@ -6,14 +6,16 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 19:52:15 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/03/09 21:25:27 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/03/10 20:12:04 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
 
-char	*ft_strchr(char *str, char c)
+char	*ft_strchr(char *str, char c);
+
+/* char	*ft_strchr(char *str, char c)
 {
 	size_t	i;
 
@@ -26,7 +28,7 @@ char	*ft_strchr(char *str, char c)
 	if (!str[i])
 		return (NULL);
 	return (str + i);
-}
+} */
 
 void	ft_skip_whitespace(char *str, size_t *i)
 {
@@ -87,8 +89,8 @@ int		ft_atoi_base(char *str, char *base)
 
 int 	main(void)
 {
-	char	str[] = "-BBBB";
-	char	base[] = "ABCD";
+	char	str[] = "101010";
+	char	base[] = "01";
 	int		ret;
 
 	ret = ft_atoi_base(str, base);
