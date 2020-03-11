@@ -1,12 +1,12 @@
 ; **************************************************************************** ;
 ;                                                                              ;
 ;                                                         ::::::::             ;
-;    ft_atoi_base_bonus2.s                              :+:    :+:             ;
+;    ft_atoi_base_bonus.s                               :+:    :+:             ;
 ;                                                      +:+                     ;
 ;    By: tbruinem <tbruinem@student.codam.nl>         +#+                      ;
 ;                                                    +#+                       ;
 ;    Created: 2020/03/09 17:10:06 by tbruinem       #+#    #+#                 ;
-;    Updated: 2020/03/11 14:47:05 by tbruinem      ########   odam.nl          ;
+;    Updated: 2020/03/11 19:12:18 by tbruinem      ########   odam.nl          ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
@@ -112,23 +112,25 @@ _ft_atoi_base:
 	jne .error
 ;----------------------------<needs to end in: rdi = str, rsi = base
 	mov r8, 0
-	jmp .skip_whitespace
+;	jmp .skip_whitespace
+	jmp .get_sign
 
-.skip_whitespace:
-	mov r9, 0
-	mov r9b, [rdi + r8]
-	cmp r9b, 9
-	jl .get_sign
-	cmp r9b, 13
-	jg .is_space
-	inc r8
-	jmp .skip_whitespace
 
-.is_space:
-	cmp r9b, 32
-	jne .get_sign
-	inc r8
-	jmp .skip_whitespace
+;.skip_whitespace:
+;	mov r9, 0
+;	mov r9b, [rdi + r8]
+;	cmp r9b, 9
+;	jl .get_sign
+;	cmp r9b, 13
+;	jg .is_space
+;	inc r8
+;	jmp .skip_whitespace
+
+;.is_space:
+;	cmp r9b, 32
+;	jne .get_sign
+;	inc r8
+;	jmp .skip_whitespace
 
 .get_sign:
 	mov r9, 0
