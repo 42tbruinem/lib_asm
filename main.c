@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 11:22:10 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/03/10 20:44:01 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/03/11 14:48:51 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,8 @@ static void	test_ft_strchr(void)
 
 static void	test_ft_atoi_base(void)
 {
-	char	str[] = "123";
-	char	base[] = "0123456789";
+	char	str[] = "01010";
+	char	base[] = "01";
 	int		ret;
 
 	ret = 0;

@@ -6,7 +6,7 @@
 #    By: tbruinem <tbruinem@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/03/09 13:01:31 by tbruinem       #+#    #+#                 #
-#    Updated: 2020/03/10 18:41:49 by tbruinem      ########   odam.nl          #
+#    Updated: 2020/03/11 14:49:47 by tbruinem      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ OBJ = $(SRC:%.s=%.o)
 all: $(NAME)
 
 %.o: %.s
-	nasm -fmacho64 -g -Wall -O3 $< -o $@
+	nasm -fmacho64 -g $< -o $@
 
 $(NAME): $(OBJ)
 	$(CC) $(FLAGS) main.c $^ -o $(NAME)
