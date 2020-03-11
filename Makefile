@@ -6,7 +6,7 @@
 #    By: tbruinem <tbruinem@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/03/09 13:01:31 by tbruinem       #+#    #+#                 #
-#    Updated: 2020/03/11 14:49:47 by tbruinem      ########   odam.nl          #
+#    Updated: 2020/03/11 20:10:16 by tbruinem      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ all: $(NAME)
 	nasm -fmacho64 -g $< -o $@
 
 $(NAME): $(OBJ)
-	$(CC) $(FLAGS) main.c $^ -o $(NAME)
+	$(CC) $(FLAGS) ft_list_sort.c ft_list_print.c main.c $^ -o $(NAME)
 
 clean:
 	rm -rf $(OBJ)

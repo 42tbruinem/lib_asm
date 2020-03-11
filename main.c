@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 11:22:10 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/03/11 19:12:31 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/03/11 20:24:40 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,23 @@ static void	test_ft_atoi_base(void)
 	printf("ret: %d\n", ret);
 }
 
+static void	test_ft_list_sort(void)
+{
+	t_list	*head;
+	size_t	ret;
+
+	head = NULL;
+	ft_list_push_front(&head, "0");
+	ft_list_push_front(&head, "22");
+	ft_list_push_front(&head, "444");
+	ft_list_push_front(&head, "4");
+	ret = ft_list_size(head);
+	printf("ret: %ld\n", ret);
+	ft_list_print(head);
+	ft_list_sort(&head, &ft_item_cmp);
+	ft_list_print(head);
+}
+
 int		main(void)
 {
 	test_ft_write();
@@ -144,5 +161,6 @@ int		main(void)
 	test_ft_list_size();
 	test_ft_strchr();
 	test_ft_atoi_base();
+	test_ft_list_sort();
 	return (0);
 }

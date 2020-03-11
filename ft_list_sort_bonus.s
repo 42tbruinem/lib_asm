@@ -1,34 +1,40 @@
 ; **************************************************************************** ;
 ;                                                                              ;
 ;                                                         ::::::::             ;
-;    ft_list_size_bonus.s                               :+:    :+:             ;
+;    ft_list_sort_bonus.s                               :+:    :+:             ;
 ;                                                      +:+                     ;
 ;    By: tbruinem <tbruinem@student.codam.nl>         +#+                      ;
 ;                                                    +#+                       ;
-;    Created: 2020/03/09 17:51:15 by tbruinem       #+#    #+#                 ;
-;    Updated: 2020/03/11 19:38:53 by tbruinem      ########   odam.nl          ;
+;    Created: 2020/03/11 19:22:46 by tbruinem       #+#    #+#                 ;
+;    Updated: 2020/03/11 19:31:41 by tbruinem      ########   odam.nl          ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
-global _ft_list_size
+global _ft_list_sort
+extern _ft_list_size
+
+section .data
+	%define CMP_FUNCT [rbp - 16]
+	%define HEAD [rbp - 8]
+	%define LST_SIZE r12
 
 section .text
 
-;rdi = begin
+;void	ft_list_sort(t_list **begin, int (*cmp)(char ());
 
-;size_t	ft_list_size(t_list *begin);
-
-_ft_list_size:
-	xor rax, rax
-	jmp .loop
-
-.loop:
-	mov rcx, rdi
-	cmp rcx, 0
-	je .ret
-	inc rax
-	mov rdi, [rdi + 8]
-	jmp .loop
+_ft_list_sort
+	push rbp
+	mov rbp, rsp
+	push rdi
+	push rsi
+	push r12
+	mov rsi, [HEAD]
+	call _ft_list_size
+	mov r12, rax
 
 .ret:
-	ret
+	pop r12
+	pop rsi
+	pop rdi
+	mov rsp, rbp
+	pop rbp

@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 12:30:57 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/03/10 14:41:05 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/03/11 20:10:26 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ typedef struct	s_list
 	void			*data;
 	struct s_list	*next;
 }				t_list;
+
+int		ft_item_cmp(void *item1, void *item2);
+void	ft_list_sort(t_list **begin, int (*cmp)());
+void	ft_list_print(t_list *head);
 
 size_t	ft_write(int fd, void *buf, size_t size);
 size_t	ft_read(int fd, void *buf, size_t size);
