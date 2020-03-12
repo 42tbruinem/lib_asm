@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 12:30:57 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/03/11 20:10:26 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/03/12 12:13:47 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ char	*ft_strchr(char *str, char c);
 void	ft_list_push_front(t_list **head, void *data);
 size_t	ft_list_size(t_list *begin);
 int		ft_atoi_base(char *str, char *base);
+char	*ft_itoa_base(int n, char *base);
 
 #endif

@@ -6,11 +6,11 @@
 #    By: tbruinem <tbruinem@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/03/09 13:01:31 by tbruinem       #+#    #+#                 #
-#    Updated: 2020/03/11 20:10:16 by tbruinem      ########   odam.nl          #
+#    Updated: 2020/03/12 19:20:05 by tbruinem      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libtest
+NAME = libasm.a
 SRC =	ft_write.s \
 		ft_read.s \
 		ft_strcpy.s \
@@ -18,8 +18,10 @@ SRC =	ft_write.s \
 		ft_strdup.s \
 		ft_list_push_front_bonus.s \
 		ft_list_size_bonus.s \
+		ft_list_sort_bonus.s \
 		ft_strchr_bonus.s \
 		ft_atoi_base_bonus.s \
+		ft_itoa_base_bonus.s \
 		ft_strlen.s
 FLAGS = -Wall -Wextra -Werror
 ifdef DEBUG
@@ -30,10 +32,10 @@ OBJ = $(SRC:%.s=%.o)
 all: $(NAME)
 
 %.o: %.s
-	nasm -fmacho64 -g $< -o $@
+	nasm -fmacho64 $< -o $@
 
 $(NAME): $(OBJ)
-	$(CC) $(FLAGS) ft_list_sort.c ft_list_print.c main.c $^ -o $(NAME)
+	ar -rcs $(NAME) $^
 
 clean:
 	rm -rf $(OBJ)

@@ -6,7 +6,7 @@
 ;    By: tbruinem <tbruinem@student.codam.nl>         +#+                      ;
 ;                                                    +#+                       ;
 ;    Created: 2020/03/09 13:46:15 by tbruinem       #+#    #+#                 ;
-;    Updated: 2020/03/09 20:39:06 by tbruinem      ########   odam.nl          ;
+;    Updated: 2020/03/12 19:02:10 by tbruinem      ########   odam.nl          ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
@@ -15,10 +15,11 @@ global _ft_strcpy
 section .text
 
 _ret:
-	lea rax, [rdi + rax]
+	mov rax, rdi
 	ret
 
 _loop:
+
 	mov dl, [rsi + rax]
 	mov [rdi + rax], dl
 	mov dl, [rsi + rax]

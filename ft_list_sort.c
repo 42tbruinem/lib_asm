@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/11 19:39:41 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/03/11 21:06:29 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/03/12 18:57:30 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,33 @@ void	ft_list_addfront(t_list **begin, t_list *add)
 	*begin = add;
 }
 
-void	ft_list_skip(t_list **list, size_t iter)
+void	ft_list_skip(t_list **list, t_list **highest_prev, size_t iter)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < iter && (*list)->next)
+	*highest_prev = NULL;
+	while (i < iter && (*list))
 	{
+		*highest_prev = *list;
 		*list = (*list)->next;
 		i++;
 	}
 }
+
+//	step 1:
+//	skip for the length of i (updating highest_prev AND iter)
+
+//	step 2:
+//	loop over iter, comparing iter->next against highest
+//	updating highest and highest_prev if a new highest is found
+
+//	step 3:
+//	at the end of the loop, check if highest is not equal to *begin
+//	(otherwise we cant set highest_prev) and it wouldnt make sense to re-add it to the beginning
+
+//	do this until i == len
+//	then we'll have a sorted list.
 
 void	ft_list_sort(t_list **begin, int (*cmp)(void *item1, void *item2))
 {
@@ -53,12 +69,11 @@ void	ft_list_sort(t_list **begin, int (*cmp)(void *item1, void *item2))
 	t_list	*iter;
 
 	len = ft_list_size(*begin);
-	printf("LEN: %ld\n", len);
 	i = 0;
 	while (i < len)
 	{
 		iter = *begin;
-		ft_list_skip(&iter, i);
+		ft_list_skip(&iter, &highest_prev, i);
 		highest = iter;
 		while (iter && iter->next)
 		{

@@ -6,11 +6,23 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 11:22:10 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/03/11 20:24:40 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/03/12 20:15:06 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libasm.h"
+
+int		ft_item_cmp(void *item1, void *item2)
+{
+	size_t	len1;
+	size_t	len2;
+
+	len1 = ft_strlen((char *)item1);
+	len2 = ft_strlen((char *)item2);
+	if (len1 > len2)
+		return (1);
+	return (0);
+}
 
 static void	test_ft_read(void)
 {
@@ -122,31 +134,46 @@ static void	test_ft_strchr(void)
 
 static void	test_ft_atoi_base(void)
 {
-	char	str[] =  "-15";
-	char	base[] = "0123456789";
+	char	str[] =  "XXX";
+	char	base[] = "OoXx";
 	int		ret;
 
 	ret = 0;
 	printf("ATOI_BASE\n");
 	ret = ft_atoi_base(str, base);
-	printf("ret: %d\n", ret);
+	printf("str: %s | base: %s | num: %d\n", str, base, ret);
 }
 
 static void	test_ft_list_sort(void)
 {
 	t_list	*head;
-	size_t	ret;
+	size_t	size;
 
 	head = NULL;
 	ft_list_push_front(&head, "0");
 	ft_list_push_front(&head, "22");
 	ft_list_push_front(&head, "444");
 	ft_list_push_front(&head, "4");
-	ret = ft_list_size(head);
-	printf("ret: %ld\n", ret);
+	printf("LIST_SORT\n");
+	size = ft_list_size(head);
+	printf("ret: %lu\n", size);
+	printf("before:\n");
 	ft_list_print(head);
 	ft_list_sort(&head, &ft_item_cmp);
+	printf("after:\n");
 	ft_list_print(head);
+}
+
+static void	test_ft_itoa_base(void)
+{
+	char	base[] = "OoXx";
+	char	*ret;
+	int		num;
+
+	printf("ITOA_BASE\n");
+	num = -42;
+	ret = ft_itoa_base(num, base);
+	printf("num: %d | base: %s | str: %s\n", num, base, ret);
 }
 
 int		main(void)
@@ -161,6 +188,7 @@ int		main(void)
 	test_ft_list_size();
 	test_ft_strchr();
 	test_ft_atoi_base();
+	test_ft_itoa_base();
 	test_ft_list_sort();
 	return (0);
 }

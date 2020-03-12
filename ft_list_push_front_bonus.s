@@ -6,35 +6,40 @@
 ;    By: tbruinem <tbruinem@student.codam.nl>         +#+                      ;
 ;                                                    +#+                       ;
 ;    Created: 2020/03/09 17:24:02 by tbruinem       #+#    #+#                 ;
-;    Updated: 2020/03/11 10:42:10 by tbruinem      ########   odam.nl          ;
+;    Updated: 2020/03/12 20:58:04 by tbruinem      ########   odam.nl          ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
 global _ft_list_push_front
 extern _malloc
 
+section .data
+	%define HEAD r12
+	%define NEW rax
+	%define DATA r14
+
 section .text
 
 ;void ft_list_push_front(t_list **head, void *data)
-;rdi = head
-;rsi = data
-
-_error:
-	ret
 
 _ft_list_push_front:
-	push rdi
-	push rsi
-	push r10
-	mov rdi, 16
+	push rbp
+	mov rbp, rsp
+	push r12
+	push r14
+	mov HEAD, rdi
+	mov DATA, rsi
+	mov rdi, 16 ;(SIZEOF(T_LIST));
 	call _malloc
-	pop r10
-	cmp rax, 0
-	je _error
-	pop rsi
-	pop rdi
-	mov [rax], rsi
-	mov rsi, [rdi]
-	mov [rdi], rax
-	mov [rax + 8], rsi
+	cmp NEW, 0
+	je .ret
+	mov [NEW], DATA
+	mov rsi, [HEAD]
+	mov [HEAD], NEW
+	mov [NEW + 8], rsi
+.ret:
+	pop r14
+	pop r12
+	mov rsp, rbp
+	pop rbp
 	ret

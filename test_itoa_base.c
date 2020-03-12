@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_list_print.c                                    :+:    :+:            */
+/*   test_itoa_base.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/11 20:09:15 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/03/12 20:23:26 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/03/12 12:12:31 by tbruinem       #+#    #+#                */
+/*   Updated: 2020/03/12 12:13:18 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libasm.h"
+#include <stdio.h>
 
-void	ft_list_print(t_list *head)
+int		main(void)
 {
-	while (head)
-	{
-		printf("%s", (char *)head->data);
-		head = head->next;
-		if (head)
-			printf("->");
-		else
-			printf("\n");
-	}
+	char	base[] = "0123456789";
+	char	*ret;
+
+	ret = ft_itoa_base(15, base);
+	printf("ret: %s\n", ret);
+	return (0);
 }
