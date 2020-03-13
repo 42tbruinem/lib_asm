@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 11:22:10 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/03/13 01:22:34 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/03/13 11:19:17 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,19 @@ static void	test_ft_read(void)
 	printf("READ\n");
 	fd = open("readtest.txt", O_RDONLY);
 	out = ft_read(fd, buf, 49);
-	if ((int)out == -1)
-		exit(1);
-	printf("out: %ld | buf: %s\n", out, buf);
+	printf("out: %ld | buf: %s\n\n", out, buf);
 }
 
 static void	test_ft_write(void)
 {
-	char	str[] = "Yeet\n";
+	char	str[] = "Yeet";
 	size_t	out;
 
 	printf("WRITE\n");
 	out = ft_write(1, str, strlen(str));
 	if ((int)out == -1)
 		exit(1);
-	printf("out: %ld\n", out);
+	printf(" <- Written string | str_to_write: %s | out: %ld\n\n", str, out);
 }
 
 static void	test_ft_strlen(void)
@@ -57,7 +55,7 @@ static void	test_ft_strlen(void)
 
 	out = ft_strlen(str);
 	printf("STRLEN\n");
-	printf("out: %ld | str: %s\n", out, str);
+	printf("out: %ld | str: %s\n\n", out, str);
 }
 
 static void	test_ft_strcpy(void)
@@ -70,7 +68,7 @@ static void	test_ft_strcpy(void)
 	printf("STRCPY\n");
 	printf("before:\ndest: %s | src: %s | ret: %p\n", dest, src, ret);
 	ret = ft_strcpy(dest, src);
-	printf("after:\ndest: %s | src: %s | ret: %p\n", dest, src, ret);
+	printf("after:\ndest: %s | src: %s | ret: %p\n\n", dest, src, ret);
 }
 
 static void	test_ft_strcmp(void)
@@ -81,7 +79,7 @@ static void	test_ft_strcmp(void)
 
 	printf("STRCMP\n");
 	out = ft_strcmp(s1, s2);
-	printf("out: %d\n", out);
+	printf("s1: %s | s2: %s | ret: %d\n\n", s1, s2, out);
 }
 
 static void	test_ft_strdup(void)
@@ -91,7 +89,8 @@ static void	test_ft_strdup(void)
 
 	printf("STRDUP\n");
 	dup = ft_strdup(str);
-	printf("dup: %s\n", dup);
+	printf("str: %s | dup: %s\n\n", str, dup);
+	free(dup);
 }
 
 static void	test_ft_list_push_front(void)
@@ -105,7 +104,9 @@ static void	test_ft_list_push_front(void)
 	head->data = "oldhead";
 	head->next = NULL;
 	ft_list_push_front(&head, "head");
-	printf("format: head->elem1 | strings: %s->%s\n", (char *)head->data, (char *)head->next->data);
+	printf("format: head->elem1\n");
+	ft_list_print(head);
+	printf("\n");
 }
 
 static void	test_ft_list_size(void)
@@ -115,11 +116,12 @@ static void	test_ft_list_size(void)
 
 	head = NULL;
 	printf("LST_SIZE\n");
-	ft_list_push_front(&head, "1");
-	ft_list_push_front(&head, "2");
-	ft_list_push_front(&head, "3");
+	ft_list_push_front(&head, "list1");
+	ft_list_push_front(&head, "list2");
+	ft_list_push_front(&head, "list3");
+	ft_list_print(head);
 	out = ft_list_size(head);
-	printf("out: %ld\n", out);
+	printf("out: %ld\n\n", out);
 }
 
 static void	test_ft_strchr(void)
@@ -129,7 +131,7 @@ static void	test_ft_strchr(void)
 
 	printf("STRCHR\n");
 	ret = ft_strchr(str, 'g');
-	printf("str: %s, chr: %c | ret: %s\n", str, 'g', ret);
+	printf("str: %s, chr: %c | ret: %s\n\n", str, 'g', ret);
 }
 
 static void	test_ft_atoi_base(void)
@@ -141,7 +143,7 @@ static void	test_ft_atoi_base(void)
 	ret = 0;
 	printf("ATOI_BASE\n");
 	ret = ft_atoi_base(str, base);
-	printf("str: %s | base: %s | num: %d\n", str, base, ret);
+	printf("str: %s | base: %s | num: %d\n\n", str, base, ret);
 }
 
 static void	test_ft_list_sort(void)
@@ -156,12 +158,12 @@ static void	test_ft_list_sort(void)
 	ft_list_push_front(&head, "4");
 	printf("LIST_SORT\n");
 	size = ft_list_size(head);
-	printf("ret: %lu\n", size);
 	printf("before:\n");
 	ft_list_print(head);
 	ft_list_sort(&head, &ft_item_cmp);
 	printf("after:\n");
 	ft_list_print(head);
+	printf("\n");
 }
 
 static void	test_ft_itoa_base(void)
@@ -173,7 +175,7 @@ static void	test_ft_itoa_base(void)
 	printf("ITOA_BASE\n");
 	num = -42;
 	ret = ft_itoa_base(num, base);
-	printf("num: %d | base: %s | str: %s\n", num, base, ret);
+	printf("num: %d | base: %s | str: %s\n\n", num, base, ret);
 }
 
 int		main(void)

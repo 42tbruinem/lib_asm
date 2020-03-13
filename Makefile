@@ -6,12 +6,19 @@
 #    By: tbruinem <tbruinem@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/03/09 13:01:31 by tbruinem       #+#    #+#                 #
-#    Updated: 2020/03/13 01:25:03 by tbruinem      ########   odam.nl          #
+#    Updated: 2020/03/13 10:09:52 by tbruinem      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 OS = $(shell uname)
 NAME = libasm.a
+
+ifeq ($(OS),Linux)
+	SRC_DIR := linuxsrc/
+else
+	SRC_DIR := macsrc/
+endif
+
 SRC =	ft_write.s \
 		ft_read.s \
 		ft_strcpy.s \
@@ -24,17 +31,19 @@ SRC =	ft_write.s \
 		ft_atoi_base_bonus.s \
 		ft_itoa_base_bonus.s \
 		ft_strlen.s
+
 C_FLAGS = -Wall -Wextra -Werror
-
-ifeq ($(OS),Linux) 
-S_FLAGS := -felf64
-else
-S_FLAGS := -fmacho64
-endif
-
 ifdef DEBUG
-	FLAGS += -g -fsanitize=address
+	C_FLAGS += -g -fsanitize=address
 endif
+
+ifeq ($(OS),Linux)
+	S_FLAGS := -felf64
+else
+	S_FLAGS := -fmacho64
+endif
+
+
 OBJ = $(SRC:%.s=%.o)
 
 all: $(NAME)
@@ -42,11 +51,12 @@ all: $(NAME)
 %.o: %.s
 	nasm $(S_FLAGS) $< -o $@
 
-$(NAME): $(OBJ)
+$(NAME): $(addprefix $(SRC_DIR), $(OBJ))
 	ar -rcs $(NAME) $^
 
 clean:
-	rm -rf $(OBJ)
+	rm -rf $(addprefix macsrc/, $(OBJ))
+	rm -rf $(addprefix linuxsrc/, $(OBJ))
 
 fclean: clean
 	rm -rf $(NAME)

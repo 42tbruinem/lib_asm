@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 12:30:57 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/03/12 12:13:47 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/03/13 11:04:00 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,19 @@ typedef struct	s_list
 }				t_list;
 
 int		ft_item_cmp(void *item1, void *item2);
-void	ft_list_sort(t_list **begin, int (*cmp)());
-void	ft_list_print(t_list *head);
+extern void	ft_list_sort(t_list **begin, int (*cmp)());
+extern void	ft_list_print(t_list *head);
 
-size_t	ft_write(int fd, void *buf, size_t size);
-size_t	ft_read(int fd, void *buf, size_t size);
-size_t	ft_strlen(char *str);
-char	*ft_strcpy(char *dest, char *src);
-int		ft_strcmp(char *s1, char *s2);
-char	*ft_strdup(char *str);
-char	*ft_strchr(char *str, char c);
-void	ft_list_push_front(t_list **head, void *data);
-size_t	ft_list_size(t_list *begin);
-int		ft_atoi_base(char *str, char *base);
-char	*ft_itoa_base(int n, char *base);
+extern size_t	ft_write(int fd, void *buf, size_t size);
+extern size_t	ft_read(int fd, void *buf, size_t size);
+extern size_t	ft_strlen(char *str);
+extern char		*ft_strcpy(char *dest, char *src);
+extern int		ft_strcmp(char *s1, char *s2);
+extern char		*ft_strdup(char *str);
+extern char		*ft_strchr(char *str, char c);
+extern void		ft_list_push_front(t_list **head, void *data);
+extern size_t	ft_list_size(t_list *begin);
+extern int		ft_atoi_base(char *str, char *base);
+extern char		*ft_itoa_base(int n, char *base);
 
 #endif
