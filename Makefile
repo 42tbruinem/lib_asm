@@ -6,10 +6,11 @@
 #    By: tbruinem <tbruinem@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/03/09 13:01:31 by tbruinem       #+#    #+#                 #
-#    Updated: 2020/03/12 19:20:05 by tbruinem      ########   odam.nl          #
+#    Updated: 2020/03/13 01:25:03 by tbruinem      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
+OS = $(shell uname)
 NAME = libasm.a
 SRC =	ft_write.s \
 		ft_read.s \
@@ -23,7 +24,14 @@ SRC =	ft_write.s \
 		ft_atoi_base_bonus.s \
 		ft_itoa_base_bonus.s \
 		ft_strlen.s
-FLAGS = -Wall -Wextra -Werror
+C_FLAGS = -Wall -Wextra -Werror
+
+ifeq ($(OS),Linux) 
+S_FLAGS := -felf64
+else
+S_FLAGS := -fmacho64
+endif
+
 ifdef DEBUG
 	FLAGS += -g -fsanitize=address
 endif
@@ -32,7 +40,7 @@ OBJ = $(SRC:%.s=%.o)
 all: $(NAME)
 
 %.o: %.s
-	nasm -fmacho64 $< -o $@
+	nasm $(S_FLAGS) $< -o $@
 
 $(NAME): $(OBJ)
 	ar -rcs $(NAME) $^

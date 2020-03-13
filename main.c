@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 11:22:10 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/03/12 20:15:06 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/03/13 01:22:34 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ static void	test_ft_list_push_front(void)
 	head->data = "oldhead";
 	head->next = NULL;
 	ft_list_push_front(&head, "head");
-	printf("format: head->elem1 | strings: %s->%s\n", head->data, head->next->data);
+	printf("format: head->elem1 | strings: %s->%s\n", (char *)head->data, (char *)head->next->data);
 }
 
 static void	test_ft_list_size(void)
