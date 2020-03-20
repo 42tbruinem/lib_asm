@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 11:22:10 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/03/13 11:19:17 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/03/13 15:51:39 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,29 @@ static void	test_ft_itoa_base(void)
 	printf("num: %d | base: %s | str: %s\n\n", num, base, ret);
 }
 
+static void	test_ft_list_remove_if(void)
+{
+	t_list	*head = NULL;
+
+	ft_list_push_front(&head, "DELETE_ME");
+	ft_list_push_front(&head, "list");
+	ft_list_push_front(&head, "DELETE_ME");
+	ft_list_push_front(&head, "list");
+	ft_list_push_front(&head, "list");
+	ft_list_push_front(&head, "DELETE_ME");
+	ft_list_push_front(&head, "DELETE_ME");
+	ft_list_push_front(&head, "list");
+	ft_list_push_front(&head, "DELETE_ME");
+	ft_list_push_front(&head, "list");
+	ft_list_push_front(&head, "DELETE_ME");
+	ft_list_push_front(&head, "list");
+	printf("LIST_REMOVE_IF\n");
+	ft_list_print(head);
+	ft_list_remove_if(&head, "DELETE_ME", &ft_strcmp);
+	ft_list_print(head);
+	printf("\n");
+}
+
 int		main(void)
 {
 	test_ft_write();
@@ -192,5 +215,6 @@ int		main(void)
 	test_ft_atoi_base();
 	test_ft_itoa_base();
 	test_ft_list_sort();
+	test_ft_list_remove_if();
 	return (0);
 }

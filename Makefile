@@ -6,7 +6,7 @@
 #    By: tbruinem <tbruinem@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/03/09 13:01:31 by tbruinem       #+#    #+#                 #
-#    Updated: 2020/03/13 10:09:52 by tbruinem      ########   odam.nl          #
+#    Updated: 2020/03/13 15:19:11 by tbruinem      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC =	ft_write.s \
 		ft_strchr_bonus.s \
 		ft_atoi_base_bonus.s \
 		ft_itoa_base_bonus.s \
+		ft_list_remove_if_bonus.s \
 		ft_strlen.s
 
 C_FLAGS = -Wall -Wextra -Werror
