@@ -5,15 +5,15 @@
 ;                                                      +:+                     ;
 ;    By: tbruinem <tbruinem@student.codam.nl>         +#+                      ;
 ;                                                    +#+                       ;
-;    Created: 2020/03/09 13:02:34 by tbruinem       #+#    #+#                 ;
-;    Updated: 2020/03/13 11:08:11 by tbruinem      ########   odam.nl          ;
+;    Created: 2020/03/09 13:02:34 by tbruinem      #+#    #+#                  ;
+;    Updated: 2020/05/06 16:51:28 by tbruinem      ########   odam.nl          ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
 global	ft_read
 
 section .data
-	%define READ_ID 3
+	%define READ_ID 0
 
 section .text
 
