@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/09 12:30:57 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/03/13 15:18:42 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/03/09 12:30:57 by tbruinem      #+#    #+#                 */
+/*   Updated: 2020/06/10 22:13:51 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include <stdlib.h>
 # include <sys/stat.h>
 # include <sys/types.h>
+# include <errno.h>
+
+extern int	errno;
 
 typedef struct	s_list
 {

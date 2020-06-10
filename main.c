@@ -5,12 +5,15 @@
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/09 11:22:10 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/03/13 15:51:39 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/03/09 11:22:10 by tbruinem      #+#    #+#                 */
+/*   Updated: 2020/06/10 23:02:41 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libasm.h"
+#include <errno.h>
+
+extern int	errno;
 
 int		ft_item_cmp(void *item1, void *item2)
 {
@@ -28,24 +31,26 @@ static void	test_ft_read(void)
 {
 	int			fd;
 	static char	buf[50];
-	size_t		out;
+	int			out;
 
 	printf("READ\n");
 	fd = open("readtest.txt", O_RDONLY);
 	out = ft_read(fd, buf, 49);
-	printf("out: %ld | buf: %s\n\n", out, buf);
+	printf("\nOUT: %d | ERRNO: %d\n", out, errno);
+	if ((int)out == -1)
+		printf("ERRNO: %d\n", errno);
+	printf("buf: %s\n\n", buf);
 }
 
 static void	test_ft_write(void)
 {
 	char	str[] = "Yeet";
-	size_t	out;
+	int		out;
 
 	printf("WRITE\n");
 	out = ft_write(1, str, strlen(str));
-	if ((int)out == -1)
-		exit(1);
-	printf(" <- Written string | str_to_write: %s | out: %ld\n\n", str, out);
+	printf("\nOUT: %d | ERRNO: %d\n", out, errno);
+	printf(" <- Written string | str_to_write: %s\n", str);
 }
 
 static void	test_ft_strlen(void)
