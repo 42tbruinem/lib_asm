@@ -5,8 +5,8 @@
 #                                                      +:+                     #
 #    By: tbruinem <tbruinem@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
-#    Created: 2020/03/09 13:01:31 by tbruinem       #+#    #+#                 #
-#    Updated: 2020/03/13 15:19:11 by tbruinem      ########   odam.nl          #
+#    Created: 2020/03/09 13:01:31 by tbruinem      #+#    #+#                  #
+#    Updated: 2020/06/18 15:49:24 by tbruinem      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,16 +50,16 @@ OBJ = $(SRC:%.s=%.o)
 all: $(NAME)
 
 %.o: %.s
-	nasm $(S_FLAGS) $< -o $@
+	@nasm $(S_FLAGS) $< -o $@
 
 $(NAME): $(addprefix $(SRC_DIR), $(OBJ))
-	ar -rcs $(NAME) $^
+	@ar -rcs $(NAME) $^
 
 clean:
-	rm -rf $(addprefix macsrc/, $(OBJ))
-	rm -rf $(addprefix linuxsrc/, $(OBJ))
+	@rm -rf $(addprefix macsrc/, $(OBJ))
+	@rm -rf $(addprefix linuxsrc/, $(OBJ))
 
 fclean: clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 
 re: fclean all

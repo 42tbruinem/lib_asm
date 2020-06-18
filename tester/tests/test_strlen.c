@@ -1,38 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   test_strlen.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/09 11:22:10 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/06/18 19:45:09 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/06/18 19:43:11 by tbruinem      #+#    #+#                 */
+/*   Updated: 2020/06/18 19:43:19 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libasm.h"
-#include <errno.h>
+#include <libasm.h>
 
-int			main(int argc, char **argv)
+void	test_ft_strlen(void)
 {
-	const char	*options[] = {
-		[0] = "mandatory",
-		[1] = "bonus",
-		[2] = 
-	};
-	int			option;
+	char	str[] = "0123456789";
+	int		out[2];
+	int		version;
 
-	if (argc <= 1)
+	version = REAL;
+	printf("---STRLEN---\n");
+	while (version < 2)
 	{
-		mandatory();
-		bonus();
+		out[version] = (version == REAL) ? strlen(str) : ft_strlen(str);
+		printf("%sSTR: %s | OUT: %d\n", vname(version), str, out[version]);
+		version++;
 	}
-	else if (argc == 2)
-	{
-		option = str2cmp(options, argv[1]);
-		if ()
-
-
-	}
-	return (0);
+	write(1, "\n", 1);
 }

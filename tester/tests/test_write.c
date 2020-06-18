@@ -1,38 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   test_write.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/09 11:22:10 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/06/18 19:45:09 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/06/18 19:43:33 by tbruinem      #+#    #+#                 */
+/*   Updated: 2020/06/18 19:43:43 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libasm.h"
-#include <errno.h>
+#include <libasm.h>
 
-int			main(int argc, char **argv)
+void	test_ft_write(void)
 {
-	const char	*options[] = {
-		[0] = "mandatory",
-		[1] = "bonus",
-		[2] = 
-	};
-	int			option;
+	char	str[] = "Yeet";
+	int		version;
+	int		out[2];
 
-	if (argc <= 1)
+	version = REAL;
+	printf("---WRITE---\n");
+	while (version < 2)
 	{
-		mandatory();
-		bonus();
+		write(1, vname(version), ft_strlen(vname(version)));
+		out[version] = (version == REAL) ?
+			write(1, str, strlen(str)) : ft_write(1, str, strlen(str));
+		printf(" | OUT: %d | ERRNO: %d\n", out[version], errno);
+		version++;
 	}
-	else if (argc == 2)
-	{
-		option = str2cmp(options, argv[1]);
-		if ()
-
-
-	}
-	return (0);
+	write(1, "\n", 1);
 }

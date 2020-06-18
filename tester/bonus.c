@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   bonus.c                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/09 11:22:10 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/06/18 19:45:09 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/06/18 18:06:34 by tbruinem      #+#    #+#                 */
+/*   Updated: 2020/06/18 18:07:24 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libasm.h"
-#include <errno.h>
+#include <libasm.h>
 
-int			main(int argc, char **argv)
+void		bonus(void)
 {
-	const char	*options[] = {
-		[0] = "mandatory",
-		[1] = "bonus",
-		[2] = 
-	};
-	int			option;
-
-	if (argc <= 1)
-	{
-		mandatory();
-		bonus();
-	}
-	else if (argc == 2)
-	{
-		option = str2cmp(options, argv[1]);
-		if ()
-
-
-	}
-	return (0);
+	printf("~~~~BONUS FUNCTIONS~~~~\n\n");
+	test_ft_list_push_front();
+	test_ft_list_size();
+	test_ft_strchr();
+	test_ft_atoi_base();
+	test_ft_itoa_base();
+	test_ft_list_sort();
+	test_ft_list_remove_if();
 }

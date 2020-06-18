@@ -1,38 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   test_atoibase.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/09 11:22:10 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/06/18 19:45:09 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/06/18 19:39:20 by tbruinem      #+#    #+#                 */
+/*   Updated: 2020/06/18 20:12:48 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libasm.h"
-#include <errno.h>
+#include <libasm.h>
 
-int			main(int argc, char **argv)
+void	test_ft_atoi_base(char *p1, char *p2)
 {
-	const char	*options[] = {
-		[0] = "mandatory",
-		[1] = "bonus",
-		[2] = 
-	};
-	int			option;
+	char	*str;
+	char	*base;
+	int		ret;
 
-	if (argc <= 1)
-	{
-		mandatory();
-		bonus();
-	}
-	else if (argc == 2)
-	{
-		option = str2cmp(options, argv[1]);
-		if ()
-
-
-	}
-	return (0);
+	str = (p1) ? p1 : "123";
+	base = (p2) ? p2 : "0123456789";
+	ret = 0;
+	printf("---ATOI_BASE---\n");
+	ret = ft_atoi_base(str, base);
+	printf("MINE: STR: %s | BASE: %s | OUT: %d\n\n", str, base, ret);
 }
