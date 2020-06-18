@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/06/18 19:41:06 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/06/18 19:41:14 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/06/18 20:23:58 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ void	test_ft_list_push_front(void)
 	ft_list_push_front(&head, "head");
 	printf("format: head->elem1\n");
 	ft_list_print(head);
+	free(head);
 	printf("\n");
 }

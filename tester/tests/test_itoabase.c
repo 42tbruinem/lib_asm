@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/06/18 19:38:18 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/06/18 20:15:25 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/06/18 20:23:31 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ void	test_ft_itoa_base(char *p1, char *p2)
 	int		num;
 
 	num = (p1) ? (atoi(p1)) : -42;
+	if (p1 && strcmp(p1, "NULL") == 0)
+		num = 0;
 	base = (p2) ? p2 : "0123456789";
+	if (p2 && strcmp(p2, "NULL") == 0)
+		base = NULL;
 	printf("---ITOA_BASE---\n");
 	num = -42;
 	ret = ft_itoa_base(num, base);
