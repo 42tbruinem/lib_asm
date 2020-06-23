@@ -6,7 +6,7 @@
 #    By: tbruinem <tbruinem@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/06/21 18:00:17 by tbruinem      #+#    #+#                  #
-#    Updated: 2020/06/23 23:17:52 by tbruinem      ########   odam.nl          #
+#    Updated: 2020/06/23 23:25:41 by tbruinem      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,12 +47,12 @@ SRC 	:=	$(addprefix src/, $(SRC))
 
 obj/%.o: src/%.c
 	@mkdir -p $(@D)
-	(CC) $(INCL) $(FLAGS) -c $< -o $@
+	$(CC) $(INCL) $(FLAGS) -c $< -o $@
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	(CC) $(FLAGS) $(INCL) $^ $(TAIL) -o $(NAME)
+	$(CC) $(FLAGS) $(INCL) $^ $(TAIL) -o $(NAME)
 
 clean:
 	rm -rf $(OBJ)

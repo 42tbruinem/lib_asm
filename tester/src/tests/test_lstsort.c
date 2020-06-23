@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/06/18 19:38:57 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/06/23 23:16:41 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/06/24 00:08:28 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,21 +79,28 @@ void		cleanup(t_list *head)
 
 int			numcmp(char *s1, char *s2)
 {
-	return (atoi(s2) - atoi(s1));
+	int ret;
+
+	ret = atoi(s1) - atoi(s2);
+	if (ret > 0)
+		ret = 1;
+	else if (ret < 0)
+		ret = 0;
+	return (ret);
 }
 
 void		test_ft_list_sort(char *p1)
 {
 	t_list	*head = NULL;
-//	size_t	size;
-//	char	*str;
-//	size_t	stuck;
-//	size_t	i;
+	size_t	size;
+	char	*str;
+	size_t	stuck;
+	size_t	i;
 
-//	stuck = 0;
-//	size = (p1) ? atoi(p1) : 5;
-//	i = 0;
-/* 	while (i < size)
+	stuck = 0;
+	size = (p1) ? atoi(p1) : 5;
+	i = 0;
+	while (i < size)
 	{
 		srand(time(NULL) + stuck);
 		str = itoa(rand() % (size));
@@ -106,23 +113,13 @@ void		test_ft_list_sort(char *p1)
 		}
 		ft_list_push_front(&head, str);
 		i++;
-	} */
-	(void)p1;
-	ft_list_push_front(&head, "4");
-    ft_list_push_front(&head, "800");
-    ft_list_push_front(&head, "3");
-    ft_list_push_front(&head, "4");
-    ft_list_push_front(&head, "50");
-    ft_list_push_front(&head, "64");
-    ft_list_push_front(&head, "0");
-    ft_list_push_front(&head, "22");
-    ft_list_push_front(&head, "1");
+	}
 	printf("---LST_SORT---\n");
 	printf("BEFORE:\n");
 	ft_list_print(head);
 	ft_list_sort(&head, &numcmp);
 	printf("AFTER:\n");
 	ft_list_print(head);
-//	cleanup(head);
+	cleanup(head);
 	printf("\n");
 }

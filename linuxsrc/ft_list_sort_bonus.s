@@ -5,139 +5,75 @@
 ;                                                      +:+                     ;
 ;    By: tbruinem <tbruinem@student.codam.nl>         +#+                      ;
 ;                                                    +#+                       ;
-;    Created: 2020/03/12 16:30:24 by tbruinem      #+#    #+#                  ;
-;    Updated: 2020/06/23 23:17:22 by tbruinem      ########   odam.nl          ;
+;    Created: 2020/06/23 23:30:08 by tbruinem      #+#    #+#                  ;
+;    Updated: 2020/06/24 00:02:47 by tbruinem      ########   odam.nl          ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
-;step 1:
-;skip for the length of i (updating highest_prev AND iter)
+;void	ft_list_sort(t_list **begin_list, int (*cmp)())
 
-;step 2:
-;loop over iter, comparing iter->next against highest
-;updating highest and highest_prev if a new highest is found
-
-;step 3:
-;at the end of the loop, check if highest is not equal to *begin
-;(otherwise we cant set highest_prev) and it wouldnt make sense to re-add it to the beginning
-
-;do this until i == len
-;then we'll have a sorted list.
-
-global ft_list_sort
-extern ft_list_size
+global	ft_list_sort
 
 section .data
 	%define HEAD r12
 	%define ITER r13
-	%define HIGHEST r14
-	%define HIGHEST_PREV r15
-	%define COUNTER rbx
-	%define LST_SIZE [rbp - 16]
-	%define CMP_FUNCT [rbp - 8]
-	%define SKIPCOUNTER rdx
+	%define CMP	r14
+	%define SWAPPED r15
 
 section .text
-
-;void	ft_list_sort(t_list **begin, int (*cmp)());
 
 ft_list_sort:
 	push rbp
 	mov rbp, rsp
-	sub rsp, 8
-	sub rsp, 16
 	push r12
 	push r13
 	push r14
 	push r15
-	push rbx
-	mov CMP_FUNCT, rsi
+	sub rsp, 8
+	cmp	rdi, 0
+		je .ret
+	cmp	rsi, 0
+		je .ret
+	mov CMP, rsi
 	mov HEAD, rdi
-	mov rdi, [HEAD]
-	push rdi;
-	call ft_list_size
-	pop rdi;
-	mov LST_SIZE, rax
-	cmp rax, 1
-	jle .ret
-	mov COUNTER, 0
-	mov SKIPCOUNTER, 0
+	mov SWAPPED, 1
 
-.sort:
+.resetloop:
+	cmp SWAPPED, 0
+		je .ret
+	mov SWAPPED, 0
+	mov ITER, [HEAD]
 
-;----------------------------------------------------
-;	loop over the list LST_SIZE times
-;	reset skipcounter
-;	reset highest, highest_prev and iter
-;----------------------------------------------------
-	cmp COUNTER, LST_SIZE
-	je .ret
-	mov SKIPCOUNTER, 0
-	mov HIGHEST_PREV, 0
-	mov rax, [HEAD]
-	mov ITER, rax
-	mov HIGHEST, ITER
-	cmp COUNTER, 0
-	je .continue
-;----------------------------------------------------
-;	list = list->next COUNTER times
-;	updating highest_prev, iter and highest
-;----------------------------------------------------
-.skip:
-	mov rsi, ITER
-	mov HIGHEST_PREV, ITER
-	mov rdi, [ITER + 8]
-	mov ITER, rdi
-	mov HIGHEST, ITER
-	inc SKIPCOUNTER
-	cmp SKIPCOUNTER, COUNTER
-	jl .skip
-;----------------------------------------------------
-;	compare HIGHEST->DATA against iter->next->data
-;	updating highest and highest_prev if iter->next->data is bigger
-;----------------------------------------------------
-.continue:
+.loop:
 	cmp ITER, 0
-	je .move_to_front
-	cmp qword [ITER + 8], 0
-	je .move_to_front
+		je .resetloop
 	mov rax, [ITER + 8]
-	mov rdi, [rax]
-	mov rsi, [HIGHEST]
-	call CMP_FUNCT
 	cmp rax, 0
-	jg .not_higher
-	mov HIGHEST, [ITER + 8]
-	mov HIGHEST_PREV, ITER
-.not_higher:
+		je .continue
+	mov rdi, [ITER]
+	mov rsi, [rax]
+	call CMP
+	cmp rax, $0
+	jl .continue
+	cmp rax, 0
+	je .continue
+	mov rax, [ITER]
+	mov rdx, [ITER + 8]
+	mov rcx, [rdx]
+	mov [ITER], rcx
+	mov [rdx], rax
+	mov SWAPPED, 1
+.continue:
 	mov rax, [ITER + 8]
 	mov ITER, rax
-	jmp .continue
-
-;----------------------------------------------------
-;	set HIGHEST_PREV->next = HIGHEST->next
-;	set HIGHEST->next = [HEAD]->next
-;	set [HEAD] = HIGHEST
-;----------------------------------------------------
-.move_to_front:
-	inc COUNTER
-	cmp HIGHEST, [HEAD]
-	je	.sort
-	mov rax, [HIGHEST + 8]
-	mov [HIGHEST_PREV + 8], rax
-	mov rax, [HEAD]
-	mov [HEAD], HIGHEST
-	mov [HIGHEST + 8], rax
-	jmp .sort
-
-.error:
-	mov rax, 0
+	jmp .loop
 
 .ret:
-	pop rbx 
+	add rsp, 8
 	pop r15
 	pop r14
 	pop r13
 	pop r12
 	mov rsp, rbp
 	pop rbp
+	ret
