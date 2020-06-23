@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   item_cmp.c                                         :+:    :+:            */
+/*   test_atoibase.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/06/18 19:44:52 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/06/18 19:44:58 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/06/18 19:39:20 by tbruinem      #+#    #+#                 */
+/*   Updated: 2020/06/23 19:32:07 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libasm.h>
+#include <tester.h>
 
-int		ft_item_cmp(void *item1, void *item2)
+void	test_ft_atoi_base(char *p1, char *p2)
 {
-	size_t	len1;
-	size_t	len2;
+	char	*str;
+	char	*base;
+	int		ret;
 
-	len1 = ft_strlen((char *)item1);
-	len2 = ft_strlen((char *)item2);
-	if (len1 > len2)
-		return (1);
-	return (0);
+	str = (p1) ? p1 : "123";
+	if (strcmp(str, "NULL") == 0)
+		str = NULL;
+	base = (p2) ? p2 : "0123456789";
+	if (strcmp(base, "NULL") == 0)
+		base = NULL;
+	ret = 0;
+	printf("---ATOI_BASE---\n");
+	ret = ft_atoi_base(str, base);
+	printf("MINE: STR: %s | BASE: %s | OUT: %d\n\n", str, base, ret);
 }

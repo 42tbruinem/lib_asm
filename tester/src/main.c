@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   test_strdup.c                                      :+:    :+:            */
+/*   main.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/06/18 19:41:28 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/06/18 19:41:36 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/03/09 11:22:10 by tbruinem      #+#    #+#                 */
+/*   Updated: 2020/06/23 18:15:03 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libasm.h>
+#include "libasm.h"
+#include <errno.h>
+#include <tester.h>
 
-void	test_ft_strdup(void)
+int			main(int argc, char **argv)
 {
-	char	str[] = "wkdfldf";
-	char	*dup = NULL;
-	int		version;
+	int			option;
 
-	version = REAL;
-	printf("---STRDUP---\n");
-	while (version < 2)
+	if (argc <= 1)
 	{
-		dup = (version == REAL) ? strdup(str) : ft_strdup(str);
-		printf("%sSTR: %s | DUP: %s\n", vname(version), str, dup);
-		free(dup);
-		dup = NULL;
-		version++;
+		mandatory();
+		bonus();
 	}
-	write(1, "\n", 1);
+	else if (argc >= 2)
+		options(argc, argv);
+	return (0);
 }

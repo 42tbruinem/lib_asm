@@ -5,8 +5,8 @@
 ;                                                      +:+                     ;
 ;    By: tbruinem <tbruinem@student.codam.nl>         +#+                      ;
 ;                                                    +#+                       ;
-;    Created: 2020/03/12 16:30:24 by tbruinem       #+#    #+#                 ;
-;    Updated: 2020/03/13 11:00:44 by tbruinem      ########   odam.nl          ;
+;    Created: 2020/03/12 16:30:24 by tbruinem      #+#    #+#                  ;
+;    Updated: 2020/06/23 23:17:22 by tbruinem      ########   odam.nl          ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
@@ -42,29 +42,21 @@ section .text
 ;void	ft_list_sort(t_list **begin, int (*cmp)());
 
 ft_list_sort:
-;---RSP-8: TOTAL OFFSET: 8
 	push rbp
 	mov rbp, rsp
-;---RSP-8: TOTAL OFFSET: 16
 	sub rsp, 8
-;---RSP-16: TOTAL OFFSET: 32 (extra 8)
 	sub rsp, 16
-;---RSP-8: TOTAL OFFSET: 40
 	push r12
-;---RSP-8: TOTAL OFFSET: 48
 	push r13
-;---RSP-8: TOTAL OFFSET: 56
 	push r14
-;---RSP-8: TOTAL OFFSET: 64
 	push r15
-;---RSP-8: TOTAL OFFSET: 72
 	push rbx
 	mov CMP_FUNCT, rsi
 	mov HEAD, rdi
 	mov rdi, [HEAD]
-	push rdi; <-- why...
+	push rdi;
 	call ft_list_size
-	pop rdi; <-- whyyyyyy...
+	pop rdi;
 	mov LST_SIZE, rax
 	cmp rax, 1
 	jle .ret
@@ -113,8 +105,8 @@ ft_list_sort:
 	mov rdi, [rax]
 	mov rsi, [HIGHEST]
 	call CMP_FUNCT
-	cmp rax, 1
-	jne .not_higher
+	cmp rax, 0
+	jg .not_higher
 	mov HIGHEST, [ITER + 8]
 	mov HIGHEST_PREV, ITER
 .not_higher:

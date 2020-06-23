@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/11 19:39:41 by tbruinem       #+#    #+#                */
-/*   Updated: 2020/03/12 18:57:30 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/03/11 19:39:41 by tbruinem      #+#    #+#                 */
+/*   Updated: 2020/06/23 21:37:33 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	ft_list_sort(t_list **begin, int (*cmp)(void *item1, void *item2))
 		highest = iter;
 		while (iter && iter->next)
 		{
-			if (cmp(iter->next->data, highest->data))
+			if (cmp(iter->next->data, highest->data) > 0)
 			{
 				highest = iter->next;
 				highest_prev = iter;

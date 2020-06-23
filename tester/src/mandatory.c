@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   test_write.c                                       :+:    :+:            */
+/*   mandatory.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/06/18 19:43:33 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/06/18 19:43:43 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/06/18 18:02:35 by tbruinem      #+#    #+#                 */
+/*   Updated: 2020/06/21 18:30:47 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libasm.h>
+#include <errno.h>
+#include <tester.h>
 
-void	test_ft_write(void)
+void	mandatory(void)
 {
-	char	str[] = "Yeet";
-	int		version;
-	int		out[2];
-
-	version = REAL;
-	printf("---WRITE---\n");
-	while (version < 2)
-	{
-		write(1, vname(version), ft_strlen(vname(version)));
-		out[version] = (version == REAL) ?
-			write(1, str, strlen(str)) : ft_write(1, str, strlen(str));
-		printf(" | OUT: %d | ERRNO: %d\n", out[version], errno);
-		version++;
-	}
-	write(1, "\n", 1);
+	printf("~~~~MANDATORY FUNCTIONS~~~~\n\n");
+	test_ft_write(NULL);
+	test_ft_read(NULL);
+	test_ft_strlen(NULL);
+	test_ft_strcpy(NULL, NULL);
+	test_ft_strcmp(NULL, NULL);
+	test_ft_strdup(NULL);
 }

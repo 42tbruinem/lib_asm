@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   bonus.c                                            :+:    :+:            */
+/*   vname.c                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/06/18 18:06:34 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/06/18 18:07:24 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/06/18 18:05:39 by tbruinem      #+#    #+#                 */
+/*   Updated: 2020/06/21 18:15:41 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libasm.h>
+#include <tester.h>
 
-void		bonus(void)
+char	*vname(int version)
 {
-	printf("~~~~BONUS FUNCTIONS~~~~\n\n");
-	test_ft_list_push_front();
-	test_ft_list_size();
-	test_ft_strchr();
-	test_ft_atoi_base();
-	test_ft_itoa_base();
-	test_ft_list_sort();
-	test_ft_list_remove_if();
+	const char	*names[] = {
+		[REAL] = "REAL: ",
+		[MINE] = "MINE: ",
+	};
+
+	return ((char *)names[version]);
 }

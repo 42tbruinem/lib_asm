@@ -1,37 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   test_read.c                                        :+:    :+:            */
+/*   test_strcmp.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/06/18 19:43:57 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/06/18 19:44:06 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/06/18 19:41:50 by tbruinem      #+#    #+#                 */
+/*   Updated: 2020/06/23 17:18:28 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libasm.h>
+#include <tester.h>
 
-void	test_ft_read(void)
+void	test_ft_strcmp(char *p1, char *p2)
 {
-	int			fd;
-	static char	buf[2][50];
-	int			out[2];
-	int			version;
-	char		*filename;
+	char	*s1 = "lala";
+	char	*s2 = "lalb";
+	int		out[2];
+	int		version;
 
-	filename = "readtest.txt";
-	printf("---READ---\n");
 	version = REAL;
+	printf("---STRCMP---\n");
 	while (version < 2)
 	{
-		fd = open(filename, O_RDONLY);
-		write(1, vname(version), ft_strlen(vname(version)));
-		out[version] = (version == REAL) ?
-			read(fd, buf[version], 49) : ft_read(fd, buf[version], 49);
-		printf("STR: %s | OUT: %d | ERRNO: %d\n", buf[version], out[version], errno);
+		out[version] = (version == REAL) ? strcmp(s1, s2) : ft_strcmp(s1, s2);
+		printf("%sSTR1: %s | STR2: %s | OUT: %d\n", vname(version), s1, s2, out[version]);
 		version++;
-		close(fd);
 	}
 	write(1, "\n", 1);
 }

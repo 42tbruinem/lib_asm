@@ -5,8 +5,8 @@
 ;                                                      +:+                     ;
 ;    By: tbruinem <tbruinem@student.codam.nl>         +#+                      ;
 ;                                                    +#+                       ;
-;    Created: 2020/03/09 17:24:02 by tbruinem       #+#    #+#                 ;
-;    Updated: 2020/03/12 20:58:04 by tbruinem      ########   odam.nl          ;
+;    Created: 2020/03/09 17:24:02 by tbruinem      #+#    #+#                  ;
+;    Updated: 2020/06/23 19:35:16 by tbruinem      ########   odam.nl          ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
@@ -29,6 +29,8 @@ _ft_list_push_front:
 	push r14
 	mov HEAD, rdi
 	mov DATA, rsi
+	cmp HEAD, 0
+	je .ret
 	mov rdi, 16 ;(SIZEOF(T_LIST));
 	call _malloc
 	cmp NEW, 0

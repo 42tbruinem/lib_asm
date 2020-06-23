@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   test_atoibase.c                                    :+:    :+:            */
+/*   test_strdup.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/06/18 19:39:20 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/06/18 20:22:47 by tbruinem      ########   odam.nl         */
+/*   Created: 2020/06/18 19:41:28 by tbruinem      #+#    #+#                 */
+/*   Updated: 2020/06/23 18:13:19 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libasm.h>
+#include <tester.h>
 
-void	test_ft_atoi_base(char *p1, char *p2)
+void	test_ft_strdup(char *p1)
 {
 	char	*str;
-	char	*base;
-	int		ret;
+	char	*dup;
+	int		version;
 
-	str = (p1) ? p1 : "123";
-	if (p1 && strcmp(p1, "NULL") == 0)
+	str = (p1) ? p1 : "klwjdf";
+	if (strcmp(str, "NULL") == 0)
 		str = NULL;
-	base = (p2) ? p2 : "0123456789";
-	if (p2 && strcmp(p2, "NULL") == 0)
-		base = NULL;
-	ret = 0;
-	printf("---ATOI_BASE---\n");
-	ret = ft_atoi_base(str, base);
-	printf("MINE: STR: %s | BASE: %s | OUT: %d\n\n", str, base, ret);
+	version = REAL;
+	printf("---STRDUP---\n");
+	while (version < 2)
+	{
+		dup = NULL;
+		dup = (version == REAL) ? strdup(str) : ft_strdup(str);
+		printf("%sSTR: %s %p| DUP: %s %p\n", vname(version), str, str, dup, dup);
+		free(dup);
+		version++;
+	}
+	write(1, "\n", 1);
 }

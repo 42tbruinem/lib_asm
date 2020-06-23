@@ -6,24 +6,20 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/06/18 19:41:06 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/06/18 20:23:58 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/06/23 19:39:05 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libasm.h>
+#include <tester.h>
 
-void	test_ft_list_push_front(void)
+void	test_ft_list_push_front(char *p1)
 {
 	t_list	*head;
 
-	head = malloc(sizeof(t_list));
-	if (!head)
-		return ;
 	printf("---LST_PUSHFRONT---\n");
-	head->data = "oldhead";
-	head->next = NULL;
-	ft_list_push_front(&head, "head");
-	printf("format: head->elem1\n");
+	head = NULL;
+	ft_list_push_front(&head, (void *)p1);
 	ft_list_print(head);
 	free(head);
 	printf("\n");
