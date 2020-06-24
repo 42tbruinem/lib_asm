@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/06/18 19:43:57 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/06/23 22:35:01 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/06/24 13:00:00 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,6 @@ void	test_ft_read(char *p1)
 	while (version < 2)
 	{
 		fd = open(filename, O_RDONLY);
-		if (fd == -1 || (read(fd, (void *)0, 0) == -1))
-		{
-			printf("Not a valid file descriptor.\n");	
-			return ;
-		}
 		write(1, vname(version), ft_strlen(vname(version)));
 		out[version] = (version == REAL) ?
 			read(fd, buf[version], 49) : ft_read(fd, buf[version], 49);

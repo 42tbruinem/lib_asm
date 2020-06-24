@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/09 12:30:57 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/06/23 22:49:33 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/06/24 13:09:15 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void			test_ft_strcmp(char *p1, char *p2);
 void			test_ft_strlen(char *p1);
 void			test_ft_strcpy(char *p1, char *p2);
 void			test_ft_strdup(char *p1);
-void			test_ft_write(char *p1);
+void			test_ft_write(char *p1, char *p2);
 void			test_ft_read(char *p1);
 
 void			test_ft_strchr(char *p1, char *p2);

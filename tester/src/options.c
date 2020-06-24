@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/06/18 18:56:57 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/06/23 19:43:10 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/06/24 13:09:40 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,15 @@ void		run_funct(int *i, int option, char **args, char **options)
 {
 	const static t_singleparamf	p1functs[17] = {
 	[STRLEN] = &test_ft_strlen,
-	[STRDUP] = &test_ft_strdup, 
+	[STRDUP] = &test_ft_strdup,
 	[READ] = &test_ft_read,
-	[WRITE] = &test_ft_write,
 	[LSTSORT] = &test_ft_list_sort,
 	[LSTSIZE] = &test_ft_list_size,
 	[LSTPUSHFRONT] = &test_ft_list_push_front,
 	};
 	const static t_doubleparamf	p2functs[17] = {
 	[LSTREMOVEIF] = &test_ft_list_remove_if,
+	[WRITE] = &test_ft_write,
 	[STRCMP] = &test_ft_strcmp,
 	[STRCPY] = &test_ft_strcpy,
 	[STRCHR] = &test_ft_strchr,
